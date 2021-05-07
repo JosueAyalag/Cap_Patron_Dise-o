@@ -20,7 +20,7 @@ class ConcreteSubject {
         if (isExist) {
             return console.log('Subject: Observer has been attached already.');
         }
-        console.log('Subject: Attached an observer.');
+        console.log('Subject: se suscribrio al clima');
         this.observers.push(observer);
     }
     detach(observer) {
@@ -35,7 +35,7 @@ class ConcreteSubject {
      * Trigger an update in each subscriber.
      */
     notify() {
-        console.log('Subject: Notifying observers...');
+        console.log('Subject: Enviando mensaje a suscriptores...');
         for (const observer of this.observers) {
             observer.update(this);
         }
@@ -47,9 +47,9 @@ class ConcreteSubject {
      * happen (or after it).
      */
     someBusinessLogic() {
-        console.log('\nSubject: I\'m doing something important.');
-        this.state = Math.floor(Math.random() * (10 + 1));
-        console.log(`Subject: My state has just changed to: ${this.state}`);
+        console.log('\nSubject: Estoy calculando el clima...');
+        // this.state = Math.floor(Math.random() * (10 + 1));
+        console.log(`Subject: Mi estado a cambiado a lluvioso `);
         this.notify();
     }
 }

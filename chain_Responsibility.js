@@ -21,26 +21,26 @@ class AbstractHandler {
  * All Concrete Handlers either handle a request or pass it to the next handler
  * in the chain.
  */
-class MonkeyHandler extends AbstractHandler {
+class Alumno1 extends AbstractHandler {
     handle(request) {
-        if (request === 'Banana') {
-            return `Monkey: I'll eat the ${request}.`;
+        if (request === 'suma') {
+            return `Alumno1: yo hago la  ${request}.`;
         }
         return super.handle(request);
     }
 }
-class SquirrelHandler extends AbstractHandler {
+class Alumno2 extends AbstractHandler {
     handle(request) {
-        if (request === 'Nut') {
-            return `Squirrel: I'll eat the ${request}.`;
+        if (request === 'resta') {
+            return `Alumno2: yo hago la suma ${request}.`;
         }
         return super.handle(request);
     }
 }
-class DogHandler extends AbstractHandler {
+class Alumno3 extends AbstractHandler {
     handle(request) {
-        if (request === 'MeatBall') {
-            return `Dog: I'll eat the ${request}.`;
+        if (request === 'division') {
+            return `Alumno3: yo hago la division ${request}.`;
         }
         return super.handle(request);
     }
@@ -50,31 +50,31 @@ class DogHandler extends AbstractHandler {
  * cases, it is not even aware that the handler is part of a chain.
  */
 function clientCode(handler) {
-    const foods = ['Nut', 'Banana', 'Cup of coffee'];
-    for (const food of foods) {
-        console.log(`Client: Who wants a ${food}?`);
-        const result = handler.handle(food);
+    const operaciones = ['suma', 'resta', 'dividir'];
+    for (const operacion of operaciones) {
+        console.log(`Client: Quien me ayuda a resolver esta ${operacion}?`);
+        const result = handler.handle(operacion);
         if (result) {
             console.log(`  ${result}`);
         }
         else {
-            console.log(`  ${food} was left untouched.`);
+            console.log(`  ${operacion} se dejo pasar.`);
         }
     }
 }
 /**
  * The other part of the client code constructs the actual chain.
  */
-const monkey = new MonkeyHandler();
-const squirrel = new SquirrelHandler();
-const dog = new DogHandler();
-monkey.setNext(squirrel).setNext(dog);
+const alumno1 = new Alumno1();
+const alumno2 = new Alumno2();
+const alumno3 = new Alumno3();
+alumno1.setNext(alumno2).setNext(alumno3);
 /**
  * The client should be able to send a request to any handler, not just the
  * first one in the chain.
  */
-console.log('Chain: Monkey > Squirrel > Dog\n');
-clientCode(monkey);
+console.log('Chain: Realizar operaciones aritmetica\n');
+clientCode(alumno1);
 console.log('');
-console.log('Subchain: Squirrel > Dog\n');
-clientCode(squirrel);
+console.log('Subchain: Realizar operaciones aritmetica\n');
+clientCode(alumno2);
